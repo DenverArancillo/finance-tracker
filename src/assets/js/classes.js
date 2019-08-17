@@ -1,5 +1,3 @@
-const ID = id => document.getElementById(id);
-
 class Ajax{
 	constructor(method = '', url = '', param = null, repeat = false){
 		this.method = method;
@@ -32,10 +30,10 @@ class Ajax{
 						return this.receivedData;
 					}
 				}else{
-					throw{
+					throw new Error({
 						status: false,
 						message: 'Error in parameters'
-					};
+					});
 				}
 			}else{
 				const request = await fetch(this.url);
@@ -51,3 +49,5 @@ class Ajax{
 		}
 	}
 }
+
+export default Ajax;
