@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
-    <script src="assets/js/classes.js"></script>
+    <script src="classes.js"></script>
 </head>
 <body>
     Register Account<br>
@@ -14,14 +14,23 @@
     <button id="register">Register</button>
 </body>
 <script>
-    document.addEventListener('DOMContentLoaded', async () => {
+    const ID = id => document.getElementById(id);
+
+    document.addEventListener('DOMContentLoaded', () => {
 
         // let server check identical username and return if true or false
 
         let uniqUser = true;
-        const getUsers = new Ajax('GET', 'api/user/all');
-        const request = await getUsers.send();
-        console.log(request);
+        let a = (async () => {
+            return await fetch('api/user/all')
+            .then(res => res.text())
+            .then(res => res);
+        })();
+        console.log(a); 
+        // const ajax = new Ajax('api/user/all.php');
+        // console.log(ajax.get());
+        // const request = await getUsers.send();
+        // console.log(request);
 
         // submit registration
         ID('register').addEventListener('click', () => {
